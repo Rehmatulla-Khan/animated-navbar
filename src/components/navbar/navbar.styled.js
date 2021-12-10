@@ -55,7 +55,7 @@ export const NavigationItem = styled.li`
   z-index: 1;
 
   &:nth-child(1).active ~ .indicator {
-    transform: translateX(calc(70px * 0));
+    transform: translateX(0);
   }
 
   &:nth-child(2).active ~ .indicator {
@@ -135,17 +135,20 @@ export const Indicator = styled.div`
 
   transition: 0.5s;
 
+  &::after,
   &::before {
     content: "";
 
     position: absolute;
     top: 50%;
-    left: -22px;
 
     width: 20px;
     height: 20px;
 
     background: transparent;
+  }
+  &::before {
+    left: -22px;
 
     border-top-right-radius: 20px;
 
@@ -153,16 +156,7 @@ export const Indicator = styled.div`
   }
 
   &::after {
-    content: "";
-
-    position: absolute;
-    top: 50%;
     right: -22px;
-
-    width: 20px;
-    height: 20px;
-
-    background: transparent;
 
     border-top-left-radius: 20px;
 

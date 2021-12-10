@@ -96,69 +96,54 @@ const Navbar = () => {
     });
   };
 
+  const arr = [
+    {
+      item: "Home",
+      icon: <AiOutlineHome />,
+      onClick: handleHomeClick,
+      isActive: isActive.homeIsActive,
+    },
+    {
+      item: "Profile",
+      icon: <AiOutlineUser />,
+      onClick: handleProfileClick,
+      isActive: isActive.profileIsActive,
+    },
+    {
+      item: "Message",
+      icon: <AiOutlineMessage />,
+      onClick: handleMessageClick,
+      isActive: isActive.messageIsActive,
+    },
+    {
+      item: "Photos",
+      icon: <AiOutlineCamera />,
+      onClick: handlePhotoClick,
+      isActive: isActive.photoIsActive,
+    },
+    {
+      item: "Settings",
+      icon: <IoSettingsOutline />,
+      onClick: handleSettingClick,
+      isActive: isActive.settingIsActive,
+    },
+  ];
+
   return (
     <Nav>
       <Navigation>
         <NavigationList>
-          <NavigationItem
-            className={isActive.homeIsActive ? "list active" : "list"}
-            onClick={handleHomeClick}
-          >
-            <AnchorTag href="#">
-              <NavIcon className="icon">
-                <AiOutlineHome />
-              </NavIcon>
-              <NavText className="text">Home</NavText>
-            </AnchorTag>
-          </NavigationItem>
-
-          <NavigationItem
-            className={isActive.profileIsActive ? "list active" : "list"}
-            onClick={handleProfileClick}
-          >
-            <AnchorTag href="#">
-              <NavIcon className="icon">
-                <AiOutlineUser />
-              </NavIcon>
-              <NavText className="text">Profile</NavText>
-            </AnchorTag>
-          </NavigationItem>
-
-          <NavigationItem
-            className={isActive.messageIsActive ? "list active" : "list"}
-            onClick={handleMessageClick}
-          >
-            <AnchorTag href="#">
-              <NavIcon className="icon">
-                <AiOutlineMessage />
-              </NavIcon>
-              <NavText className="text">Message</NavText>
-            </AnchorTag>
-          </NavigationItem>
-
-          <NavigationItem
-            className={isActive.photoIsActive ? "list active" : "list"}
-            onClick={handlePhotoClick}
-          >
-            <AnchorTag href="#">
-              <NavIcon className="icon">
-                <AiOutlineCamera />
-              </NavIcon>
-              <NavText className="text">Photos</NavText>
-            </AnchorTag>
-          </NavigationItem>
-
-          <NavigationItem
-            className={isActive.settingIsActive ? "list active" : "list"}
-            onClick={handleSettingClick}
-          >
-            <AnchorTag href="#">
-              <NavIcon className="icon">
-                <IoSettingsOutline />
-              </NavIcon>
-              <NavText className="text">Settings</NavText>
-            </AnchorTag>
-          </NavigationItem>
+          {arr.map(({ item, icon, onClick, isActive }) => (
+            <NavigationItem
+              className={isActive ? "list active" : "list"}
+              onClick={onClick}
+            >
+              <AnchorTag href="#">
+                <NavIcon className="icon">{icon}</NavIcon>
+                <NavText className="text">{item}</NavText>
+              </AnchorTag>
+            </NavigationItem>
+          ))}
           <Indicator className="indicator"></Indicator>
         </NavigationList>
       </Navigation>
