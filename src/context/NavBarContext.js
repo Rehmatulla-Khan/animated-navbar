@@ -1,17 +1,55 @@
 import React, { createContext, useContext, useReducer } from "react";
 
 const initialState = {
-  //add your initial state values here
+  homeIsActive: true,
+  profileIsActive: false,
+  messageIsActive: false,
+  photoIsActive: false,
+  settingIsActive: false,
 };
 
-const reducer = (state, action) => {
-  //add your reducer here
+const resetState = {
+  ...initialState,
+  homeIsActive: false,
+};
+
+const reducer = (state = initialState, action) => {
+  switch (action.type) {
+    case "homeIsActive":
+      return {
+        ...resetState,
+        homeIsActive: true,
+      };
+    case "profileIsActive":
+      return {
+        ...resetState,
+        profileIsActive: true,
+      };
+    case "messageIsActive":
+      return {
+        ...resetState,
+        messageIsActive: true,
+      };
+    case "photoIsActive":
+      return {
+        ...resetState,
+        photoIsActive: true,
+      };
+    case "settingIsActive":
+      return {
+        ...resetState,
+        settingIsActive: true,
+      };
+
+    default:
+      return state;
+  }
 };
 
 const NavBarStateContext = createContext(initialState);
 const NavBarDispatchContext = createContext(() => 0);
 
-const NavBarProvider = ({ children, initialState }) => {
+const NavBarProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   return (

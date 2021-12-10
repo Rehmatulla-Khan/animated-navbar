@@ -16,83 +16,21 @@ import {
   AiOutlineUser,
 } from "react-icons/ai";
 import { IoSettingsOutline } from "react-icons/io5";
-
-const initialState = {
-  homeIsActive: true,
-  profileIsActive: false,
-  messageIsActive: false,
-  photoIsActive: false,
-  settingIsActive: false,
-};
-
-const resetState = {
-  ...initialState,
-  homeIsActive: false,
-};
-
-const activeReducer = (state, action) => {
-  switch (action.type) {
-    case "homeIsActive":
-      return {
-        ...resetState,
-        homeIsActive: true,
-      };
-    case "profileIsActive":
-      return {
-        ...resetState,
-        profileIsActive: true,
-      };
-    case "messageIsActive":
-      return {
-        ...resetState,
-        messageIsActive: true,
-      };
-    case "photoIsActive":
-      return {
-        ...resetState,
-        photoIsActive: true,
-      };
-    case "settingIsActive":
-      return {
-        ...resetState,
-        settingIsActive: true,
-      };
-
-    default:
-      return state;
-  }
-};
+import { useNavBarDispatch, useNavBarState } from "../../context/NavBarContext";
 
 const Navbar = () => {
-  const [isActive, dispatch] = useReducer(activeReducer, initialState);
+  const {
+    homeIsActive,
+    photoIsActive,
+    messageIsActive,
+    profileIsActive,
+    settingIsActive,
+  } = useNavBarState();
+  const dispatch = useNavBarDispatch();
 
-  const handleHomeClick = () => {
+  const handleClick = (dispatchType) => {
     dispatch({
-      type: "homeIsActive",
-    });
-  };
-
-  const handleProfileClick = () => {
-    dispatch({
-      type: "profileIsActive",
-    });
-  };
-
-  const handleMessageClick = () => {
-    dispatch({
-      type: "messageIsActive",
-    });
-  };
-
-  const handlePhotoClick = () => {
-    dispatch({
-      type: "photoIsActive",
-    });
-  };
-
-  const handleSettingClick = () => {
-    dispatch({
-      type: "settingIsActive",
+      type: dispatchType,
     });
   };
 
@@ -100,32 +38,32 @@ const Navbar = () => {
     {
       item: "Home",
       icon: <AiOutlineHome />,
-      onClick: handleHomeClick,
-      isActive: isActive.homeIsActive,
+      onClick: () => handleClick("homeIsActive"),
+      isActive: homeIsActive,
     },
     {
       item: "Profile",
       icon: <AiOutlineUser />,
-      onClick: handleProfileClick,
-      isActive: isActive.profileIsActive,
+      onClick: () => handleClick("profileIsActive"),
+      isActive: profileIsActive,
     },
     {
       item: "Message",
       icon: <AiOutlineMessage />,
-      onClick: handleMessageClick,
-      isActive: isActive.messageIsActive,
+      onClick: () => handleClick("messageIsActive"),
+      isActive: messageIsActive,
     },
     {
-      item: "Photos",
+      item: "Photo",
       icon: <AiOutlineCamera />,
-      onClick: handlePhotoClick,
-      isActive: isActive.photoIsActive,
+      onClick: () => handleClick("photoIsActive"),
+      isActive: photoIsActive,
     },
     {
-      item: "Settings",
+      item: "Setting",
       icon: <IoSettingsOutline />,
-      onClick: handleSettingClick,
-      isActive: isActive.settingIsActive,
+      onClick: () => handleClick("settingIsActive"),
+      isActive: settingIsActive,
     },
   ];
 
