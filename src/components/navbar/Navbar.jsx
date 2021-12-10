@@ -1,11 +1,20 @@
 import React, { useReducer } from "react";
-import { Nav } from "./navbar.styled";
+import {
+  Nav,
+  Navigation,
+  NavigationList,
+  NavigationItem,
+  AnchorTag,
+  NavIcon,
+  NavText,
+  Indicator,
+} from "./navbar.styled";
 import {
   AiOutlineHome,
   AiOutlineMessage,
   AiOutlineCamera,
+  AiOutlineUser,
 } from "react-icons/ai";
-import { FaRegUser } from "react-icons/fa";
 import { IoSettingsOutline } from "react-icons/io5";
 
 const initialState = {
@@ -89,70 +98,70 @@ const Navbar = () => {
 
   return (
     <Nav>
-      <div className="navigation">
-        <ul>
-          <li
+      <Navigation>
+        <NavigationList>
+          <NavigationItem
             className={isActive.homeIsActive ? "list active" : "list"}
             onClick={handleHomeClick}
           >
-            <a href="#">
-              <span className="icon">
+            <AnchorTag href="#">
+              <NavIcon className="icon">
                 <AiOutlineHome />
-              </span>
-              <span className="text">Home</span>
-            </a>
-          </li>
+              </NavIcon>
+              <NavText className="text">Home</NavText>
+            </AnchorTag>
+          </NavigationItem>
 
-          <li
+          <NavigationItem
             className={isActive.profileIsActive ? "list active" : "list"}
             onClick={handleProfileClick}
           >
-            <a href="#">
-              <span className="icon">
-                <FaRegUser />
-              </span>
-              <span className="text">Profile</span>
-            </a>
-          </li>
+            <AnchorTag href="#">
+              <NavIcon className="icon">
+                <AiOutlineUser />
+              </NavIcon>
+              <NavText className="text">Profile</NavText>
+            </AnchorTag>
+          </NavigationItem>
 
-          <li
+          <NavigationItem
             className={isActive.messageIsActive ? "list active" : "list"}
             onClick={handleMessageClick}
           >
-            <a href="#">
-              <span className="icon">
+            <AnchorTag href="#">
+              <NavIcon className="icon">
                 <AiOutlineMessage />
-              </span>
-              <span className="text">Message</span>
-            </a>
-          </li>
+              </NavIcon>
+              <NavText className="text">Message</NavText>
+            </AnchorTag>
+          </NavigationItem>
 
-          <li
+          <NavigationItem
             className={isActive.photoIsActive ? "list active" : "list"}
             onClick={handlePhotoClick}
           >
-            <a href="#">
-              <span className="icon">
+            <AnchorTag href="#">
+              <NavIcon className="icon">
                 <AiOutlineCamera />
-              </span>
-              <span className="text">Photos</span>
-            </a>
-          </li>
+              </NavIcon>
+              <NavText className="text">Photos</NavText>
+            </AnchorTag>
+          </NavigationItem>
 
-          <li
+          <NavigationItem
             className={isActive.settingIsActive ? "list active" : "list"}
             onClick={handleSettingClick}
           >
-            <a href="#">
-              <span className="icon">
+            <AnchorTag href="#">
+              <NavIcon className="icon">
                 <IoSettingsOutline />
-              </span>
-              <span className="text">Settings</span>
-            </a>
-          </li>
-          <div className="indicator"></div>
-        </ul>
-      </div>
+              </NavIcon>
+              <NavText className="text">Settings</NavText>
+            </AnchorTag>
+          </NavigationItem>
+          <Indicator className="indicator"></Indicator>
+        </NavigationList>
+      </Navigation>
     </Nav>
   );
 };

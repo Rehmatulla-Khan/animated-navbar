@@ -1,169 +1,171 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-export const Nav = styled.div`
+const FlexCenter = css`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+const firstColor = "#222327";
+
+export const Nav = styled.div`
+  ${FlexCenter}
 
   min-height: 100vh;
 
-  background: #222327;
+  background: ${firstColor};
+`;
 
-  .navigation {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+export const Navigation = styled.div`
+  ${FlexCenter}
 
-    position: relative;
+  position: relative;
 
-    width: 400px;
-    height: 70px;
+  width: 400px;
+  height: 70px;
 
-    background: #fff;
+  background: #fff;
 
-    border-radius: 10px;
+  border-radius: 10px;
+`;
 
-    ul {
-      display: flex;
+export const NavigationList = styled.ul`
+  display: flex;
 
-      width: 350px;
+  width: 350px;
 
-      li {
-        position: relative;
-        list-style: none;
+  .active a .icon {
+    transform: translateY(-35px);
+  }
 
-        width: 70px;
-        height: 70px;
+  .active a .text {
+    opacity: 1;
 
-        z-index: 1;
+    transform: translateY(10px);
+  }
+`;
 
-        a {
-          position: relative;
+export const NavigationItem = styled.li`
+  position: relative;
+  list-style: none;
 
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          flex-direction: column;
+  width: 70px;
+  height: 70px;
 
-          width: 100%;
+  z-index: 1;
 
-          text-align: center;
+  &:nth-child(1).active ~ .indicator {
+    transform: translateX(calc(70px * 0));
+  }
 
-          font-weight: 500;
+  &:nth-child(2).active ~ .indicator {
+    transform: translateX(calc(70px * 1));
+  }
 
-          .icon {
-            position: relative;
+  &:nth-child(3).active ~ .indicator {
+    transform: translateX(calc(70px * 2));
+  }
 
-            display: block;
+  &:nth-child(4).active ~ .indicator {
+    transform: translateX(calc(70px * 3));
+  }
 
-            line-height: 75px;
+  &:nth-child(5).active ~ .indicator {
+    transform: translateX(calc(70px * 4));
+  }
+`;
 
-            font-size: 1.5em;
+export const AnchorTag = styled.a`
+  position: relative;
 
-            text-align: center;
+  ${FlexCenter}
+  flex-direction: column;
 
-            transition: 0.5s;
+  width: 100%;
 
-            color: #222327;
-          }
+  text-align: center;
 
-          .text {
-            position: absolute;
+  font-weight: 500;
+`;
 
-            color: #222327;
+export const NavIcon = styled.span`
+  position: relative;
 
-            font-weight: 400;
-            font-size: 0.75em;
+  display: block;
 
-            letter-spacing: 0.05em;
+  line-height: 75px;
 
-            transition: 0.5s;
+  font-size: 1.5em;
 
-            opacity: 0;
+  text-align: center;
 
-            transform: translateY(20px);
-          }
-        }
+  transition: 0.5s;
 
-        &:nth-child(1).active ~ .indicator {
-          transform: translateX(calc(70px * 0));
-        }
+  color: ${firstColor};
+`;
 
-        &:nth-child(2).active ~ .indicator {
-          transform: translateX(calc(70px * 1));
-        }
+export const NavText = styled.span`
+  position: absolute;
 
-        &:nth-child(3).active ~ .indicator {
-          transform: translateX(calc(70px * 2));
-        }
+  color: ${firstColor};
 
-        &:nth-child(4).active ~ .indicator {
-          transform: translateX(calc(70px * 3));
-        }
+  font-weight: 400;
+  font-size: 0.75em;
 
-        &:nth-child(5).active ~ .indicator {
-          transform: translateX(calc(70px * 4));
-        }
-      }
+  letter-spacing: 0.05em;
 
-      .indicator {
-        position: absolute;
-        top: -50%;
+  transition: 0.5s;
 
-        width: 70px;
-        height: 70px;
+  opacity: 0;
 
-        background: #956be8;
+  transform: translateY(20px);
+`;
 
-        border-radius: 50%;
-        border: 6px solid #222327;
+export const Indicator = styled.div`
+  position: absolute;
+  top: -50%;
 
-        transition: 0.5s;
+  width: 70px;
+  height: 70px;
 
-        &::before {
-          content: "";
+  background: #956be8;
 
-          position: absolute;
-          top: 50%;
-          left: -22px;
+  border-radius: 50%;
+  border: 6px solid ${firstColor};
 
-          width: 20px;
-          height: 20px;
+  transition: 0.5s;
 
-          background: transparent;
+  &::before {
+    content: "";
 
-          border-top-right-radius: 20px;
+    position: absolute;
+    top: 50%;
+    left: -22px;
 
-          box-shadow: 1px -10px 0 0 #222327;
-        }
+    width: 20px;
+    height: 20px;
 
-        &::after {
-          content: "";
+    background: transparent;
 
-          position: absolute;
-          top: 50%;
-          right: -22px;
+    border-top-right-radius: 20px;
 
-          width: 20px;
-          height: 20px;
+    box-shadow: 1px -10px 0 0 ${firstColor};
+  }
 
-          background: transparent;
+  &::after {
+    content: "";
 
-          border-top-left-radius: 20px;
+    position: absolute;
+    top: 50%;
+    right: -22px;
 
-          box-shadow: -1px -10px 0 0 #222327;
-        }
-      }
+    width: 20px;
+    height: 20px;
 
-      .active a .icon {
-        transform: translateY(-35px);
-      }
+    background: transparent;
 
-      .active a .text {
-        opacity: 1;
+    border-top-left-radius: 20px;
 
-        transform: translateY(10px);
-      }
-    }
+    box-shadow: -1px -10px 0 0 ${firstColor};
   }
 `;
